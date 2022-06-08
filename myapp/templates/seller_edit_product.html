@@ -1,0 +1,143 @@
+{% extends 'seller_index.html' %}
+{% load static %}
+{% block contant %}
+<!DOCTYPE html>
+<html>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 20px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 20%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 50%;
+  }
+}
+</style>
+<body>
+<br>
+<br>
+<br>
+<form action="{% url 'seller_edit_product' pk=product.pk %}" style="border:1px solid #ccc" enctype="multipart/form-data" method="POST">
+
+  <div class="container">
+    {% csrf_token %}
+    <h1>Edit product deatils </h1>
+    
+    <hr>
+    {% if msg %}
+    <b style="color: red;">{{msg}}</b>
+    {% endif %}
+    <br>
+    <label for="name"><b>Product Name</b></label><br>
+    <input type="text" value="{{product.product_name}}" name="product_name" required><br>
+    
+    <label for="email"><b>Product Weight</b></label><br>
+    <input type="text" value="{{product.product_weight}}" name="product_weight" required><br>
+    <label for="email"><b>Product color</b></label><br>
+    <input type="text" value="{{product.product_color}}" name="product_color" required><br>
+    <label for="email"><b>Product Description</b></label><br>
+    <textarea name="product_desc" rows="3" cols="75">{{product.product_desc}}</textarea>
+
+    <label for="email"><b>Product Price</b></label><br>
+    <input type="text" value="{{product.product_price}}" name="product_price" required><br>
+
+    <label for="email"><b>Product Size</b></label><br>
+    <input type="text" value="{{product.product_size}}" name="product_size" required><br>
+    <label for="email"><b>Product Material</b></label><br>
+    <input type="text" value="{{product.product_material}}" name="product_material" required><br>
+
+
+    <label for="product_image">Current Product Image</b></label><br>
+    <img src="{{product.product_img.url}}" style="width:200px; height: 200;" ><br>
+    <label for="product_image">Product Image</b></label><br>
+    <input type="file" name="product_img" ><br>
+<br>
+<br>
+    <label for="product_image">Current Product Image 01</b></label><br>
+    <img src="{{product.product_img1.url}}" style="width:200px; height: 200;" ><br>
+    <label for="product_image">Product Image 01</b></label><br>
+    <input type="file" name="product_img1" ><br>
+<br>
+<br>
+    <label for="product_image">Current Product Image 02</b></label><br>
+    <img src="{{product.product_img2.url}}" style="width:200px; height: 200;" ><br> 
+     <label for="product_image">Product Image 02</b></label><br>
+    <input type="file" name="product_img2" ><br>
+<br>
+<br>
+<label for="product_image">Current Product Image 03</b></label><br>
+    <img src="{{product.product_img3.url}}" style="width:200px; height: 200;" ><br> 
+     <label for="product_image">Product Image 03</b></label><br>
+    <input type="file" name="product_img3" ><br>
+
+    <div class="clearfix">
+      <button type="button" class="cancelbtn">Cancel</button>
+      <input type="submit" data-value="Place order" value="submit" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+    </div>
+  </div>
+</form>
+
+</body>
+</html>
+{% endblock %}
